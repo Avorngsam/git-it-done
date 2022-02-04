@@ -5,19 +5,22 @@ var repoContainerEl = document.querySelector("#repos-container");
 var repoSearchTerm = document.querySelector("#repo-search-term");
 
 var formSubmitHandler = function(event) {
-    event.preventDefault();
-    
-// get value from input element
-var username = nameInputEl.value.trim();
+  // prevent page from refreshing
+  event.preventDefault();
 
-if (username) {
-  getUserRepos(username);
-  nameInputEl.value = "";
-} else {
-  alert("Please enter a GitHub username");
-}
-    console.log(event);
-  };
+  // get value from input element
+  var username = nameInputEl.value.trim();
+
+  if (username) {
+    getUserRepos(username);
+
+    // clear old content
+    repoContainerEl.textContent = "";
+    nameInputEl.value = "";
+  } else {
+    alert("Please enter a GitHub username");
+  }
+};
 
 var buttonClickHandler = function(event) {
   // get the language attribute from the clicked element
